@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestLink | Wear the Pulse of the Wild</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mint: '#F0FDF4',
+                        growth: '#4CAF50',
+                        amber: '#FBC02D',
+                        teal: '#00ACC1',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F0FDF4; color: #1A1A1A; }
+        .hero-heading { line-height: 1.1; letter-spacing: -0.02em; }
+        .organic-shape { border-radius: 63% 37% 54% 46% / 45% 48% 52% 55%; }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-serif selection:bg-amber selection:text-white">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 px-6 py-4 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/40 backdrop-blur-md rounded-full px-8 py-3 ring-1 ring-black/5 shadow-sm">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-growth rounded-lg flex items-center justify-center text-white">
+                    <i data-lucide="link-2" class="w-5 h-5"></i>
+                </div>
+                <span class="text-2xl font-sans font-bold tracking-tight text-growth">NestLink</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-sans font-semibold text-gray-700">
+                <a href="#story" class="hover:text-growth transition-colors">Our Story</a>
+                <a href="#mission" class="hover:text-growth transition-colors">Mission</a>
+                <a href="#waitlist" class="bg-amber hover:scale-105 hover:shadow-lg hover:shadow-amber/20 active:scale-95 text-gray-900 px-6 py-2 rounded-full transition-all duration-300 flex items-center gap-2">
+                    Join Waitlist
+                </a>
+            </nav>
+            <button class="md:hidden text-gray-700">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen pt-32 pb-20 px-6 flex flex-col justify-center overflow-hidden">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-growth/10 text-growth text-xs font-sans font-bold uppercase tracking-wider mb-6">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-growth opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-growth"></span>
+                        </span>
+                        100 Founder Spots Remaining
+                    </div>
+                    <h1 class="hero-heading font-sans font-extrabold text-5xl md:text-6xl lg:text-7xl mb-8">
+                        Wear the Pulse of the <span class="text-growth">Wild.</span> <br/>
+                        Shield a <span class="text-teal">Future.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-lg">
+                        Track epic migrations across Sea, Land, and Air. Every link funds safe education for girls in our valley.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#waitlist" class="bg-amber text-gray-900 text-center font-sans font-bold px-10 py-5 rounded-2xl hover:scale-105 hover:shadow-xl hover:shadow-amber/20 active:scale-95 transition-all text-xl">
+                            Join the First 100
+                        </a>
+                        <a href="#story" class="px-10 py-5 text-center font-sans font-bold text-gray-700 hover:text-growth transition-colors flex items-center justify-center gap-2">
+                            Meet Ian <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visualizer Area -->
+                <div class="relative flex items-center justify-center fade-in" style="animation-delay: 0.2s;">
+                    <div class="absolute inset-0 bg-growth/5 rounded-full blur-3xl opacity-50"></div>
+                    <div class="relative w-full aspect-square max-w-lg bg-white/30 backdrop-blur-sm organic-shape border border-white/20 shadow-inner p-8 overflow-hidden">
+                        <canvas id="migrationCanvas" class="w-full h-full"></canvas>
+                        
+                        <!-- Floating Labels -->
+                        <div class="absolute top-1/4 right-1/4 flex flex-col items-end gap-2">
+                            <span class="text-[10px] font-sans font-bold text-teal flex items-center gap-1 uppercase">
+                                <i data-lucide="waves" class="w-3 h-3"></i> Sea
+                            </span>
+                            <span class="text-[10px] font-sans font-bold text-growth flex items-center gap-1 uppercase">
+                                <i data-lucide="mountain" class="w-3 h-3"></i> Land
+                            </span>
+                            <span class="text-[10px] font-sans font-bold text-blue-500 flex items-center gap-1 uppercase">
+                                <i data-lucide="bird" class="w-3 h-3"></i> Air
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section id="story" class="py-24 px-6 bg-white overflow-hidden">
+            <div class="max-w-4xl mx-auto relative mt-4">
+                 <div class="absolute -left-20 -top-20 w-40 h-40 bg-teal/5 rounded-full blur-3xl"></div>
+                 <div class="absolute -right-20 -bottom-20 w-40 h-40 bg-growth/5 rounded-full blur-3xl"></div>
+                 
+                 <div class="text-center mb-16">
+                    <span class="font-sans font-bold text-growth uppercase tracking-widest text-sm mb-4 block">The Voice of the Valley</span>
+                    <h2 class="font-sans font-bold text-4xl md:text-5xl">A Message from Ian (Age 14)</h2>
+                 </div>
+
+                 <div class="relative">
+                    <i data-lucide="quote" class="absolute -top-8 -left-8 w-16 h-16 text-growth/10 rotate-12"></i>
+                    <div class="prose prose-xl mx-auto space-y-6 italic text-gray-700 leading-relaxed text-center">
+                        <p>
+                            "I'm building a digital bridge between the wild journeys of animals and the safety of girls in our village."
+                        </p>
+                        <p>
+                            "We track the wild, so we can nest the vulnerable. In our valley, education is a shield. When you track a tiger or a whale through your bracelet, you're not just watching—you're building a safe school, a guarded route, and a future for my sisters."
+                        </p>
+                    </div>
+                 </div>
+                 
+                 <div class="mt-16 flex items-center justify-center gap-6">
+                    <div class="w-px h-12 bg-gray-200"></div>
+                    <div class="text-center">
+                        <p class="font-sans font-bold text-gray-900">Ian X.</p>
+                        <p class="text-sm text-gray-500 italic">Founder & Developer</p>
+                    </div>
+                    <div class="w-px h-12 bg-gray-200"></div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="mission" class="py-24 px-6 bg-mint">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="w-12 h-12 bg-teal/10 text-teal rounded-2xl flex items-center justify-center mb-6">
+                            <i data-lucide="waves"></i>
+                        </div>
+                        <h3 class="font-sans font-bold text-xl mb-3">Pacific Guardians</h3>
+                        <p class="text-gray-600">Track Humpback Whale migrations in real-time. Your support funds maritime safety workshops for coastal villages.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="w-12 h-12 bg-growth/10 text-growth rounded-2xl flex items-center justify-center mb-6">
+                            <i data-lucide="mountain"></i>
+                        </div>
+                        <h3 class="font-sans font-bold text-xl mb-3">Valley Sentinels</h3>
+                        <p class="text-gray-600">Follow Snow Leopard movements across the mountains. Help build safe nesting zones and girl-shield education centers.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="w-12 h-12 bg-amber/10 text-amber-600 rounded-2xl flex items-center justify-center mb-6">
+                            <i data-lucide="bird"></i>
+                        </div>
+                        <h3 class="font-sans font-bold text-xl mb-3">Sky Migrators</h3>
+                        <p class="text-gray-600">Witness the incredible flights of the Bar-headed Goose. Your contribution secures textbooks for rural village girls.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="waitlist" class="py-32 px-6 bg-white relative overflow-hidden">
+            <div class="absolute inset-0 z-0 flex items-center justify-center">
+                <div class="w-[800px] h-[800px] bg-growth/5 rounded-full blur-[120px]"></div>
+            </div>
+
+            <div class="max-w-3xl mx-auto text-center relative z-10 box">
+                <h2 class="font-sans font-extrabold text-4xl md:text-6xl mb-6">Join the Nest.</h2>
+                <p class="text-xl text-gray-600 mb-12">
+                    We're launching with 100 Founders. Secure your spot on the waitlist to be the first to Wear the Wild.
+                </p>
+
+                <div id="formContainer" class="p-4 bg-white/80 backdrop-blur-md rounded-[2.5rem] shadow-2xl shadow-growth/10 border border-gray-100 max-w-xl mx-auto">
+                    <form id="waitlistForm" class="flex flex-col sm:flex-row gap-3">
+                        <input 
+                            type="email" 
+                            id="emailInput"
+                            placeholder="Enter your email" 
+                            required 
+                            class="flex-1 px-8 py-5 rounded-[1.8rem] bg-gray-50 border-none focus:ring-2 focus:ring-growth outline-none text-lg font-sans transition-all"
+                        />
+                        <button 
+                            type="submit" 
+                            class="bg-amber text-gray-900 font-sans font-bold px-10 py-5 rounded-[1.8rem] hover:scale-[1.02] active:scale-95 transition-all text-lg shadow-lg shadow-amber/20"
+                        >
+                            Join Now
+                        </button>
+                    </form>
+                </div>
+                
+                <div id="successMessage" class="hidden py-8 px-6 bg-growth rounded-[2.5rem] text-white shadow-xl max-w-xl mx-auto">
+                    <div class="flex flex-col items-center gap-4">
+                        <i data-lucide="check-circle" class="w-12 h-12"></i>
+                        <h3 class="font-sans font-bold text-2xl uppercase tracking-wider">Welcome to the Nest!</h3>
+                        <p class="italic">"We've received your link. We'll be in touch soon, Founder."</p>
+                    </div>
+                </div>
+                
+                <p class="mt-8 text-sm text-gray-400 font-sans uppercase tracking-[0.2em] font-semibold">Limited to 100 founders initially.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-100 text-center">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-center gap-2 mb-4 text-growth">
+                <i data-lucide="link-2" class="w-5 h-5"></i>
+                <span class="font-sans font-bold tracking-tight">NestLink</span>
+            </div>
+            <p class="text-sm text-gray-500 font-sans">© 2026 NestLink Project. Hunan.</p>
+        </div>
+    </footer>
+
+    <!-- Scripting -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Canvas Visualizer
+        const canvas = document.getElementById('migrationCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth * window.devicePixelRatio;
+            canvas.height = container.clientHeight * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let offset = 0;
+        function animate() {
+            const width = canvas.width / window.devicePixelRatio;
+            const height = canvas.height / window.devicePixelRatio;
+            ctx.clearRect(0, 0, width, height);
+
+            // Settings
+            const centerX = width / 2;
+            const centerY = height / 2;
+            offset += 0.005;
+
+            // Draw Trails
+            function drawPath(color, dashOffset, amplitude, freq, yOffset) {
+                ctx.beginPath();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 3;
+                ctx.setLineDash([5, 15]);
+                ctx.lineDashOffset = dashOffset;
+                ctx.moveTo(0, height / 2 + yOffset);
+                
+                for (let x = 0; x <= width; x += 5) {
+                    const y = height / 2 + Math.sin(x * freq + offset) * amplitude + yOffset;
+                    ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            // Sea (Teal) - Wavy bottom
+            drawPath('#00ACC1', -offset * 50, 20, 0.015, 20);
+            
+            // Land (Green) - Organic middle
+            drawPath('#4CAF50', -offset * 30, 40, 0.01, 0);
+
+            // Air (Blue) - Sweeping top
+            drawPath('#3B82F6', -offset * 70, 60, 0.008, -30);
+
+            // Focal Point (Pulse)
+            const pulse = Math.sin(offset * 4) * 5 + 10;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, pulse, 0, Math.PI * 2);
+            ctx.fillStyle = '#FBC02D';
+            ctx.fill();
+            
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Form Handling
+        const form = document.getElementById('waitlistForm');
+        const formContainer = document.getElementById('formContainer');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            console.log('Founder waitlist email:', email);
+            
+            // Interaction: Hide form, show success with animation
+            formContainer.style.transition = 'all 0.5s ease-out';
+            formContainer.style.opacity = '0';
+            formContainer.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                formContainer.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                successMessage.classList.add('fade-in');
+                lucide.createIcons();
+            }, 500);
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 20) {
+                header.classList.add('pt-2');
+                header.querySelector('div').classList.add('shadow-md', 'bg-white/80');
+            } else {
+                header.classList.remove('pt-2');
+                header.querySelector('div').classList.remove('shadow-md', 'bg-white/80');
+            }
+        });
+    </script>
+</body>
+</html>
