@@ -37,7 +37,7 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #F0FDF4; /* Fallback background */
+      background-color: #F0FDF4; 
       background-image: radial-gradient(circle at top left, rgba(34, 197, 94, 0.05), transparent 40%),
                         radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.05), transparent 40%);
     }
@@ -142,4 +142,103 @@
         <form id="waitlist-form" class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
             <input type="hidden" name="access_key" value="3fa2dbba-0879-4e40-b00e-559179c30e47">
             <input type="hidden" name="subject" value="🎉 New NestLink Founder Waitlist Entry!">
-            <input type="hidden" name="from
+            <input type="hidden" name="from_name" value="NestLink Waitlist">
+
+            <input type="email" id="email" name="email" required placeholder="Enter your email for Founder's Access" class="px-8 py-5 rounded-full bg-slate-50 border border-slate-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-brand-green/50 flex-grow text-lg transition-all focus:bg-white placeholder-slate-400">
+            
+            <button type="submit" id="submit-btn" class="group px-8 py-5 rounded-full bg-brand-amber hover:bg-amber-500 text-white font-bold text-lg shadow-xl shadow-brand-amber/30 transition-all hover:shadow-brand-amber/50 hover:-translate-y-1 sm:w-auto w-full flex-shrink-0 animate-pulse-slow hover:animate-none flex items-center justify-center gap-2">
+                <span>Join the First 100</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </form>
+        
+        <div id="success-msg" class="hidden mt-8 text-brand-green font-semibold text-xl items-center justify-center gap-2 relative z-10 transition-opacity duration-300">
+            <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+            Welcome to the Nest. We'll be in touch.
+        </div>
+      </div>
+  </section>
+
+  <footer class="mt-auto py-10 text-center text-slate-400 text-sm pb-12">
+    <p>&copy; 2026 NestLink. Empowering the wild.</p>
+  </footer>
+
+  <script>
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Reveal hidden mission interaction
+      const revealBtn = document.getElementById('reveal-btn');
+      const hiddenMission = document.getElementById('hidden-mission');
+
+      if(revealBtn && hiddenMission) {
+          revealBtn.addEventListener('click', () => {
+              hiddenMission.classList.toggle('open');
+              if (hiddenMission.classList.contains('open')) {
+                  revealBtn.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                  setTimeout(() => {
+                      revealBtn.style.display = 'none';
+                  }, 600); // match transition
+              }
+          });
+      }
+
+      // 升级版的静默异步表单提交 (AJAX)
+      const form = document.getElementById('waitlist-form');
+      const successMsg = document.getElementById('success-msg');
+      const submitBtn = document.getElementById('submit-btn');
+
+      if(form && successMsg && submitBtn) {
+          form.addEventListener('submit', (e) => {
+              e.preventDefault(); // 阻止页面跳转
+              const emailInput = document.getElementById('email');
+              
+              if (emailInput && emailInput.value) {
+                  // 1. 改变按钮状态，提示发送中
+                  submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> <span>Sending...</span>';
+                  lucide.createIcons();
+
+                  // 2. 悄悄在后台发送数据给 Web3Forms
+                  const formData = new FormData(form);
+                  fetch('https://api.web3forms.com/submit', {
+                      method: 'POST',
+                      body: formData
+                  })
+                  .then(async (response) => {
+                      if (response.status == 200) {
+                          // 3. 发送成功后，隐藏表单，显示成功信息
+                          form.style.transition = 'all 0.3s ease';
+                          form.style.opacity = '0';
+                          form.style.transform = 'scale(0.95)';
+                          form.style.pointerEvents = 'none';
+                          
+                          setTimeout(() => {
+                              form.style.display = 'none';
+                              successMsg.style.display = 'flex';
+                              successMsg.style.opacity = '0';
+                              
+                              // Trigger reflow
+                              void successMsg.offsetWidth;
+                              
+                              successMsg.style.opacity = '1';
+                          }, 300);
+                      } else {
+                          // 如果服务器报错，恢复按钮
+                          alert("Something went wrong. Please try again.");
+                          submitBtn.innerHTML = '<span>Join the First 100</span> <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>';
+                          lucide.createIcons();
+                      }
+                  })
+                  .catch(error => {
+                      // 如果断网，恢复按钮
+                      console.log(error);
+                      alert("Network error. Please try again.");
+                      submitBtn.innerHTML = '<span>Join the First 100</span> <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>';
+                      lucide.createIcons();
+                  });
+              }
+          });
+      }
+  </script>
+</body>
+</html>
