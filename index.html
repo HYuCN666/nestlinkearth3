@@ -59,7 +59,6 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col pt-12">
 
-  <!-- Hero Section -->
   <header class="w-full max-w-7xl mx-auto px-6 py-16 text-center">
     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/10 text-brand-green mb-8 transition-transform hover:scale-105 cursor-default">
       <i data-lucide="leaf" class="w-4 h-4"></i>
@@ -73,10 +72,8 @@
       Wear the Wild. Track the Journey.
     </p>
 
-    <!-- The 3 Links Section -->
     <section class="max-w-5xl mx-auto my-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center pt-8">
       
-      <!-- Sky Link -->
       <div class="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col items-center group relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-sky-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="w-28 h-28 bg-sky-100 rounded-full flex items-center justify-center mb-6 group-hover:-translate-y-2 transition-transform duration-500 animate-float relative z-10">
@@ -86,7 +83,6 @@
         <p class="text-slate-500 leading-relaxed font-medium relative z-10">Follow the falcon's soaring flight across continents.</p>
       </div>
 
-      <!-- Ocean Link -->
       <div class="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col items-center group relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="w-28 h-28 bg-brand-teal/10 rounded-full flex items-center justify-center mb-6 group-hover:-translate-y-2 transition-transform duration-500 animate-float relative z-10" style="animation-delay: 1s;">
@@ -96,7 +92,6 @@
         <p class="text-slate-500 leading-relaxed font-medium relative z-10">Swim with sea turtles through vast vibrant oceans.</p>
       </div>
 
-      <!-- Earth Link -->
       <div class="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col items-center group relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-brand-amber/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="w-28 h-28 bg-brand-amber/10 rounded-full flex items-center justify-center mb-6 group-hover:-translate-y-2 transition-transform duration-500 animate-float relative z-10" style="animation-delay: 2s;">
@@ -109,7 +104,6 @@
     </section>
   </header>
 
-  <!-- The "Hidden Mission" -->
   <section class="w-full max-w-4xl mx-auto px-6 py-12 text-center relative z-20">
       <button id="reveal-btn" class="group relative inline-flex items-center gap-3 px-10 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-all duration-300 text-xl font-medium shadow-2xl hover:shadow-slate-900/40 hover:-translate-y-1">
           <i data-lucide="sparkles" class="w-6 h-6 text-brand-amber group-hover:animate-spin"></i>
@@ -117,13 +111,12 @@
       </button>
       
       <div id="hidden-mission" class="hidden-content mt-12 bg-white/60 backdrop-blur-md rounded-[3rem] p-10 md:p-16 border border-brand-amber/20 shadow-2xl shadow-brand-amber/10 text-center md:text-left relative">
-          <!-- Quote Icon -->
           <div class="absolute top-10 left-10 opacity-10">
              <i data-lucide="quote" class="w-24 h-24 text-brand-amber"></i>
           </div>
           
           <p class="text-xl md:text-2xl text-slate-800 leading-loose font-serif italic relative z-10">
-              "NestLink is more than a map. Founded by Ian, a 14-year-old developer in a rural valley, a portion of every sale create a 'Nest' for girls in our village, funding their safety education. You are shielding the wild, and protecting the future."
+              "NestLink is more than a map. Founded by Ian, a 14-year-old developer in a rural valley, a portion of every sale creates a 'Nest' for girls in our village, funding their safety education. You are shielding the wild, and protecting the future."
           </p>
           
           <div class="mt-8 flex items-center justify-center md:justify-start gap-4 relative z-10">
@@ -138,10 +131,8 @@
       </div>
   </section>
 
-  <!-- Waitlist CTA -->
   <section class="w-full max-w-3xl mx-auto px-6 py-20 mt-10">
       <div class="bg-white rounded-[3rem] p-10 md:p-16 shadow-2xl shadow-brand-teal/5 border border-brand-teal/10 text-center relative overflow-hidden">
-        <!-- Decorative swirls -->
         <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-green/10 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-amber/10 rounded-full blur-3xl"></div>
         
@@ -149,74 +140,6 @@
         <p class="text-slate-500 text-lg mb-10 relative z-10">Be the first to wear the wild.</p>
         
         <form id="waitlist-form" class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-            <input type="email" id="email" required placeholder="Enter your email for Founder's Access" class="px-8 py-5 rounded-full bg-slate-50 border border-slate-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-brand-green/50 flex-grow text-lg transition-all focus:bg-white placeholder-slate-400">
-            <button type="submit" class="group px-8 py-5 rounded-full bg-brand-amber hover:bg-amber-500 text-white font-bold text-lg shadow-xl shadow-brand-amber/30 transition-all hover:shadow-brand-amber/50 hover:-translate-y-1 sm:w-auto w-full flex-shrink-0 animate-pulse-slow hover:animate-none flex items-center justify-center gap-2">
-                Join the First 100
-                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-            </button>
-        </form>
-        
-        <div id="success-msg" class="hidden mt-8 text-brand-green font-semibold text-xl items-center justify-center gap-2 relative z-10 transition-opacity duration-300">
-            <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-            Welcome to the Nest. We'll be in touch.
-        </div>
-      </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="mt-auto py-10 text-center text-slate-400 text-sm pb-12">
-    <p>&copy; 2026 NestLink. Empowering the wild.</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-      // Initialize Lucide Icons
-      lucide.createIcons();
-
-      // Reveal hidden mission interaction
-      const revealBtn = document.getElementById('reveal-btn');
-      const hiddenMission = document.getElementById('hidden-mission');
-
-      if(revealBtn && hiddenMission) {
-          revealBtn.addEventListener('click', () => {
-              hiddenMission.classList.toggle('open');
-              if (hiddenMission.classList.contains('open')) {
-                  revealBtn.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-                  setTimeout(() => {
-                      revealBtn.style.display = 'none';
-                  }, 600); // match transition
-              }
-          });
-      }
-
-      // Waitlist form submission
-      const form = document.getElementById('waitlist-form');
-      const successMsg = document.getElementById('success-msg');
-
-      if(form && successMsg) {
-          form.addEventListener('submit', (e) => {
-              e.preventDefault();
-              const email = document.getElementById('email').value;
-              if (email) {
-                  // Simulate submission
-                  form.style.transition = 'all 0.3s ease';
-                  form.style.opacity = '0';
-                  form.style.transform = 'scale(0.95)';
-                  form.style.pointerEvents = 'none';
-                  
-                  setTimeout(() => {
-                      form.style.display = 'none';
-                      successMsg.style.display = 'flex';
-                      successMsg.style.opacity = '0';
-                      
-                      // Trigger reflow
-                      void successMsg.offsetWidth;
-                      
-                      successMsg.style.opacity = '1';
-                  }, 300);
-              }
-          });
-      }
-  </script>
-</body>
-</html>
+            <input type="hidden" name="access_key" value="3fa2dbba-0879-4e40-b00e-559179c30e47">
+            <input type="hidden" name="subject" value="🎉 New NestLink Founder Waitlist Entry!">
+            <input type="hidden" name="from
