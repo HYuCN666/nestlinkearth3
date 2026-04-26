@@ -1,244 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NestLink - Wear the Wild. Track the Journey.</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              light: '#F0FDF4',
-              green: '#22c55e',
-              amber: '#f59e0b',
-              teal: '#14b8a6',
-              earth: '#8B5A2B'
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestLink | Wear the Wild. Track the Journey.</title>
+    
+    <!-- CDNs injected as requested -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Sleek Interface Theme Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    </style>
+    
+    <!-- Tailwind Configuration directly in HTML -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-mint': '#F0FDF4',
+                        'brand-green': '#15803d',
+                        'brand-amber': '#f59e0b',
+                        'brand-teal': '#0f766e'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Inter', 'sans-serif'],
+                    }
+                }
             }
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' },
-            }
-          }
         }
-      }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    </script>
     
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #F0FDF4; 
-      background-image: radial-gradient(circle at top left, rgba(34, 197, 94, 0.05), transparent 40%),
-                        radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.05), transparent 40%);
-    }
-    
-    .hidden-content {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transform: translateY(-20px);
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .hidden-content.open {
-      max-height: 800px;
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Essential Custom CSS for animations and Sleek Interface layout patterns -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0FDF4; /* Sleek theme background */
+        }
+        
+        .cartoon-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            border: 2px solid rgba(21, 128, 61, 0.1);
+        }
+
+        /* Easter Egg smooth reveal animation */
+        .reveal-text {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-text.active {
+            max-height: 500px; /* arbitrary large height to accommodate content */
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        
+        /* Focus styles for accessibility */
+        :focus-visible {
+            outline: 2px solid rgba(21, 128, 61, 0.5);
+            outline-offset: 4px;
+        }
+    </style>
 </head>
-<body class="text-slate-800 antialiased min-h-screen flex flex-col pt-12">
-
-  <header class="w-full max-w-7xl mx-auto px-6 py-16 text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/10 text-brand-green mb-8 transition-transform hover:scale-105 cursor-default">
-      <i data-lucide="leaf" class="w-4 h-4"></i>
-      <span class="text-sm font-medium tracking-wide uppercase">Wildlife Conservation</span>
-    </div>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-brand-mint selection:text-brand-teal relative w-full h-full p-8 md:p-8 flex flex-col justify-between">
     
-    <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight mb-6">
-      NestLink
-    </h1>
-    <p class="text-xl md:text-2xl text-slate-600 font-light mb-12 max-w-2xl mx-auto">
-      Wear the Wild. Track the Journey.
-    </p>
-
-    <section class="max-w-5xl mx-auto my-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center pt-8">
-      
-      <div class="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col items-center group relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-sky-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="w-28 h-28 bg-sky-100 rounded-full flex items-center justify-center mb-6 group-hover:-translate-y-2 transition-transform duration-500 animate-float relative z-10">
-           <i data-lucide="bird" class="w-14 h-14 text-sky-500"></i>
+    <!-- Seamless Navigation -->
+    <header class="flex justify-between items-center z-20">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-brand-green rounded-xl flex items-center justify-center text-white shadow-lg">
+                <i data-lucide="map-pin" class="w-5 h-5"></i> 
+            </div>
+            <span class="text-2xl font-bold text-slate-800 tracking-tight">NestLink</span>
         </div>
-        <h3 class="text-2xl font-bold mb-3 text-slate-800 relative z-10">The Sky Link</h3>
-        <p class="text-slate-500 leading-relaxed font-medium relative z-10">Follow the falcon's soaring flight across continents.</p>
-      </div>
+        <nav class="flex gap-8 text-sm font-semibold text-slate-600 hidden sm:flex">
+            <a href="#waitlist-section" class="hover:text-brand-green transition-colors">
+                Founder Access
+            </a>
+        </nav>
+    </header>
 
-      <div class="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col items-center group relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="w-28 h-28 bg-brand-teal/10 rounded-full flex items-center justify-center mb-6 group-hover:-translate-y-2 transition-transform duration-500 animate-float relative z-10" style="animation-delay: 1s;">
-           <i data-lucide="shell" class="w-14 h-14 text-brand-teal"></i>
-        </div>
-        <h3 class="text-2xl font-bold mb-3 text-slate-800 relative z-10">The Ocean Link</h3>
-        <p class="text-slate-500 leading-relaxed font-medium relative z-10">Swim with sea turtles through vast vibrant oceans.</p>
-      </div>
-
-      <div class="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col items-center group relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-brand-amber/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="w-28 h-28 bg-brand-amber/10 rounded-full flex items-center justify-center mb-6 group-hover:-translate-y-2 transition-transform duration-500 animate-float relative z-10" style="animation-delay: 2s;">
-           <i data-lucide="paw-print" class="w-14 h-14 text-brand-amber"></i>
-        </div>
-        <h3 class="text-2xl font-bold mb-3 text-slate-800 relative z-10">The Earth Link</h3>
-        <p class="text-slate-500 leading-relaxed font-medium relative z-10">Run with the snow leopard over rugged earthly terrain.</p>
-      </div>
-
-    </section>
-  </header>
-
-  <section class="w-full max-w-4xl mx-auto px-6 py-12 text-center relative z-20">
-      <button id="reveal-btn" class="group relative inline-flex items-center gap-3 px-10 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-all duration-300 text-xl font-medium shadow-2xl hover:shadow-slate-900/40 hover:-translate-y-1">
-          <i data-lucide="sparkles" class="w-6 h-6 text-brand-amber group-hover:animate-spin"></i>
-          Explore the True Meaning of 'Nest'
-      </button>
-      
-      <div id="hidden-mission" class="hidden-content mt-12 bg-white/60 backdrop-blur-md rounded-[3rem] p-10 md:p-16 border border-brand-amber/20 shadow-2xl shadow-brand-amber/10 text-center md:text-left relative">
-          <div class="absolute top-10 left-10 opacity-10">
-             <i data-lucide="quote" class="w-24 h-24 text-brand-amber"></i>
-          </div>
-          
-          <p class="text-xl md:text-2xl text-slate-800 leading-loose font-serif italic relative z-10">
-              "NestLink is more than a map. Founded by Ian, a 14-year-old developer in a rural valley, a portion of every sale creates a 'Nest' for girls in our village, funding their safety education. You are shielding the wild, and protecting the future."
-          </p>
-          
-          <div class="mt-8 flex items-center justify-center md:justify-start gap-4 relative z-10">
-             <div class="w-12 h-12 rounded-full bg-brand-amber/20 flex items-center justify-center">
-                 <i data-lucide="heart" class="w-6 h-6 text-brand-amber fill-brand-amber"></i>
-             </div>
-             <div>
-                <p class="font-bold text-slate-900 text-lg">Ian</p>
-                <p class="text-slate-500">Founder, NestLink</p>
-             </div>
-          </div>
-      </div>
-  </section>
-
-  <section class="w-full max-w-3xl mx-auto px-6 py-20 mt-10">
-      <div class="bg-white rounded-[3rem] p-10 md:p-16 shadow-2xl shadow-brand-teal/5 border border-brand-teal/10 text-center relative overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-green/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-amber/10 rounded-full blur-3xl"></div>
-        
-        <h2 class="text-4xl font-extrabold mb-4 text-slate-900 relative z-10">Join the movement.</h2>
-        <p class="text-slate-500 text-lg mb-10 relative z-10">Be the first to wear the wild.</p>
-        
-        <form id="waitlist-form" class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-            <input type="hidden" name="access_key" value="3fa2dbba-0879-4e40-b00e-559179c30e47">
-            <input type="hidden" name="subject" value="🎉 New NestLink Founder Waitlist Entry!">
-            <input type="hidden" name="from_name" value="NestLink Waitlist">
-
-            <input type="email" id="email" name="email" required placeholder="Enter your email for Founder's Access" class="px-8 py-5 rounded-full bg-slate-50 border border-slate-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-brand-green/50 flex-grow text-lg transition-all focus:bg-white placeholder-slate-400">
+    <!-- Main Content Flow -->
+    <main class="flex-1 flex flex-col lg:flex-row items-center gap-12 z-10 py-12">
+        <!-- Left Column -->
+        <div class="w-full lg:w-1/2 flex flex-col gap-6 text-left">
+            <!-- Hero Tagline -->
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-widest gap-2 w-fit">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Discover authentic connection.
+            </div>
             
-            <button type="submit" id="submit-btn" class="group px-8 py-5 rounded-full bg-brand-amber hover:bg-amber-500 text-white font-bold text-lg shadow-xl shadow-brand-amber/30 transition-all hover:shadow-brand-amber/50 hover:-translate-y-1 sm:w-auto w-full flex-shrink-0 animate-pulse-slow hover:animate-none flex items-center justify-center gap-2">
-                <span>Join the First 100</span>
-                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-            </button>
-        </form>
-        
-        <div id="success-msg" class="hidden mt-8 text-brand-green font-semibold text-xl items-center justify-center gap-2 relative z-10 transition-opacity duration-300">
-            <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-            Welcome to the Nest. We'll be in touch.
+            <!-- Hero Headline -->
+            <h1 class="text-5xl sm:text-6xl font-bold text-slate-900 leading-[1.1] tracking-tight">
+                Wear the Wild. <br><span class="text-brand-green">Track the Journey.</span>
+            </h1>
+            
+            <!-- Hero Subheadline -->
+            <p class="text-lg text-slate-600 max-w-md">
+                NestLink connects you to the wild through elegant tracking of nature. Connect with the sky, ocean, and earth like never before.
+            </p>
+
+            <!-- Waitlist Form Section (MANDATORY STRUCTURE) -->
+            <div id="waitlist-section" class="mt-4">
+                <form id="waitlist-form" action="https://api.web3forms.com/submit" method="POST" class="flex flex-col sm:flex-row gap-3 relative z-10">
+                    <input type="hidden" name="access_key" value="3fa2dbba-0879-4e40-b00e-559179c30e47">
+                    <input type="hidden" name="subject" value="🎉 New NestLink Founder Waitlist Entry!">
+                    <input type="hidden" name="from_name" value="NestLink Waitlist">
+                    <input type="email" id="email" name="email" required placeholder="Enter your email for Founder's Access" class="px-8 py-5 rounded-full bg-slate-50 border border-slate-200 shadow-inner focus:outline-none focus:ring-2 focus:ring-brand-green/50 flex-grow text-lg transition-all focus:bg-white placeholder-slate-400">
+                    <button type="submit" id="submit-btn" class="group px-8 py-5 rounded-full bg-brand-amber hover:bg-amber-500 text-white font-bold text-lg shadow-xl shadow-brand-amber/30 transition-all hover:shadow-brand-amber/50 hover:-translate-y-1 sm:w-auto w-full flex-shrink-0 flex items-center justify-center gap-2">
+                        Join Waitlist <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </form>
+                
+                <div id="form-result" class="mt-6 text-sm font-semibold hidden rounded-2xl px-6 py-4 transition-all w-full relative z-10 border"></div>
+            </div>
+
+            <!-- Easter Egg Section -->
+            <div class="mt-4" id="mission-area">
+                <button id="easter-egg-btn" class="text-brand-green font-semibold text-sm hover:underline cursor-pointer flex items-center gap-2 focus:outline-none text-left">
+                    <i data-lucide="heart" class="w-4 h-4 text-brand-amber transition-all duration-700" id="egg-heart-icon"></i> 
+                    Explore the True Meaning of 'Nest'
+                </button>
+                <div id="easter-egg-content" class="reveal-text">
+                    <div class="cartoon-card p-6 border-l-4 border-l-brand-green bg-white shadow-lg">
+                        <p class="text-slate-700 italic leading-relaxed text-sm m-0">
+                            "NestLink is more than a map. Founded by Ian, a 14-year-old developer in a rural valley, a portion of every sale creates a 'Nest' for girls in our village, funding their safety education. You are shielding the wild, and protecting the future."
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  </section>
 
-  <footer class="mt-auto py-10 text-center text-slate-400 text-sm pb-12">
-    <p>&copy; 2026 NestLink. Empowering the wild.</p>
-  </footer>
+        <!-- Right Column / Silhouettes Section -->
+        <div class="w-full lg:w-1/2 h-full relative flex items-center justify-center mt-12 lg:mt-0">
+            <div class="absolute w-96 h-96 bg-green-200/50 rounded-full blur-3xl -z-10"></div>
+            <div class="grid grid-cols-2 gap-4 w-full md:h-[480px]">
+                <!-- Sky / Falcon -->
+                <div class="cartoon-card flex flex-col items-center justify-center p-6 gap-4 transform -rotate-3 hover:rotate-0 transition-transform">
+                    <div class="w-24 h-24 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 shadow-inner">
+                        <i data-lucide="wind" class="w-12 h-12" stroke-width="1.5"></i>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-bold text-slate-800">Falcon</div>
+                        <div class="text-xs font-semibold text-teal-600 uppercase tracking-widest mt-1">Sky Companion</div>
+                    </div>
+                </div>
+                
+                <!-- Ocean / Sea Turtle -->
+                <div class="cartoon-card flex flex-col items-center justify-center p-6 gap-4 transform rotate-6 hover:rotate-0 transition-transform">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 shadow-inner">
+                        <i data-lucide="waves" class="w-12 h-12" stroke-width="1.5"></i>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-bold text-slate-800">Sea Turtle</div>
+                        <div class="text-xs font-semibold text-blue-600 uppercase tracking-widest mt-1">Ocean Guardian</div>
+                    </div>
+                </div>
+                
+                <!-- Earth / Snow Leopard -->
+                <div class="col-span-2 cartoon-card flex flex-col sm:flex-row items-center justify-between p-8 gap-6 transform -rotate-1 hover:rotate-0 transition-transform">
+                    <div class="flex items-center gap-6">
+                        <div class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 shadow-inner shrink-0">
+                            <i data-lucide="mountain" class="w-12 h-12" stroke-width="1.5"></i>
+                        </div>
+                        <div class="text-left text-center sm:text-left">
+                            <div class="font-bold text-slate-800 text-xl">Snow Leopard</div>
+                            <div class="text-sm font-semibold text-amber-600 uppercase tracking-widest mt-1">Earth Sentinel</div>
+                        </div>
+                    </div>
+                    <div class="text-center sm:text-right w-full sm:w-auto">
+                        <div class="text-3xl font-bold text-slate-900">84%</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-widest">Tracked Range</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-  <script>
-      // Initialize Lucide Icons
-      lucide.createIcons();
+    <!-- Simple Elegant Footer -->
+    <footer class="flex flex-col sm:flex-row justify-between items-center text-[10px] text-slate-400 uppercase tracking-widest border-t border-slate-200/50 pt-6 z-20 gap-4 text-center">
+        <div>&copy; 2026 NestLink Global Operations</div>
+        <div>Eco-Tech Certified &middot; Rural Empowerment Project</div>
+    </footer>
 
-      // Reveal hidden mission interaction
-      const revealBtn = document.getElementById('reveal-btn');
-      const hiddenMission = document.getElementById('hidden-mission');
+    <!-- Core Interactive Scripts -->
+    <script>
+        // Initialize all Lucide Icons
+        lucide.createIcons();
 
-      if(revealBtn && hiddenMission) {
-          revealBtn.addEventListener('click', () => {
-              hiddenMission.classList.toggle('open');
-              if (hiddenMission.classList.contains('open')) {
-                  revealBtn.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-                  setTimeout(() => {
-                      revealBtn.style.display = 'none';
-                  }, 600); // match transition
-              }
-          });
-      }
+        // ---------------------------------
+        // Waitlist Form Handling Configuration
+        // ---------------------------------
+        const form = document.getElementById('waitlist-form');
+        const result = document.getElementById('form-result');
+        const submitBtn = document.getElementById('submit-btn');
 
-      // 升级版的静默异步表单提交 (AJAX)
-      const form = document.getElementById('waitlist-form');
-      const successMsg = document.getElementById('success-msg');
-      const submitBtn = document.getElementById('submit-btn');
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const object = Object.fromEntries(formData);
+                const json = JSON.stringify(object);
+                
+                // Show Pending UI
+                result.className = 'mt-6 text-base font-medium rounded-2xl px-6 py-4 transition-all w-full mx-auto border bg-slate-100/80 text-slate-700 border-slate-200 flex items-center justify-center gap-3 shadow-inner relative z-10';
+                result.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Securing your spot...';
+                lucide.createIcons(); // re-init icons for dynamic DOM
+                result.classList.remove("hidden");
+                
+                // Disable button
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
 
-      if(form && successMsg && submitBtn) {
-          form.addEventListener('submit', (e) => {
-              e.preventDefault(); // 阻止页面跳转
-              const emailInput = document.getElementById('email');
-              
-              if (emailInput && emailInput.value) {
-                  // 1. 改变按钮状态，提示发送中
-                  submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> <span>Sending...</span>';
-                  lucide.createIcons();
+                // Perform AJAX Fetch for Web3Forms
+                fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: json
+                    })
+                    .then(async (response) => {
+                        let json = await response.json();
+                        if (response.status == 200) {
+                            // Success UI
+                            result.className = 'mt-6 text-base font-medium rounded-2xl px-6 py-4 transition-all w-full mx-auto border bg-green-50 text-green-700 border-brand-green/20 flex items-center justify-center gap-2 shadow-sm relative z-10';
+                            result.innerHTML = '<i data-lucide="check-circle" class="w-5 h-5"></i> You are officially on the Founder Waitlist!';
+                            lucide.createIcons();
+                            form.reset();
+                        } else {
+                            // Error UI
+                            result.className = 'mt-6 text-base font-medium rounded-2xl px-6 py-4 transition-all w-full mx-auto border bg-red-50 text-red-600 border-red-200 shadow-sm flex items-center justify-center gap-2 relative z-10';
+                            result.innerHTML = '<i data-lucide="alert-circle" class="w-5 h-5"></i> ' + (json.message || "Something went wrong.");
+                            lucide.createIcons();
+                        }
+                    })
+                    .catch(error => {
+                        // Network/System Error UI
+                        result.className = 'mt-6 text-base font-medium rounded-2xl px-6 py-4 transition-all w-full mx-auto border bg-red-50 text-red-600 border-red-200 shadow-sm flex items-center justify-center gap-2 relative z-10';
+                        result.innerHTML = '<i data-lucide="alert-circle" class="w-5 h-5"></i> Something went wrong! Please try again.';
+                        lucide.createIcons();
+                    })
+                    .finally(function() {
+                        // Re-enable button and cleanup message
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                        setTimeout(() => {
+                            result.style.opacity = '0';
+                            setTimeout(() => {
+                                result.classList.add('hidden');
+                                result.style.opacity = '1';
+                            }, 300);
+                        }, 6000);
+                    });
+            });
+        }
 
-                  // 2. 悄悄在后台发送数据给 Web3Forms
-                  const formData = new FormData(form);
-                  fetch('https://api.web3forms.com/submit', {
-                      method: 'POST',
-                      body: formData
-                  })
-                  .then(async (response) => {
-                      if (response.status == 200) {
-                          // 3. 发送成功后，隐藏表单，显示成功信息
-                          form.style.transition = 'all 0.3s ease';
-                          form.style.opacity = '0';
-                          form.style.transform = 'scale(0.95)';
-                          form.style.pointerEvents = 'none';
-                          
-                          setTimeout(() => {
-                              form.style.display = 'none';
-                              successMsg.style.display = 'flex';
-                              successMsg.style.opacity = '0';
-                              
-                              // Trigger reflow
-                              void successMsg.offsetWidth;
-                              
-                              successMsg.style.opacity = '1';
-                          }, 300);
-                      } else {
-                          // 如果服务器报错，恢复按钮
-                          alert("Something went wrong. Please try again.");
-                          submitBtn.innerHTML = '<span>Join the First 100</span> <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>';
-                          lucide.createIcons();
-                      }
-                  })
-                  .catch(error => {
-                      // 如果断网，恢复按钮
-                      console.log(error);
-                      alert("Network error. Please try again.");
-                      submitBtn.innerHTML = '<span>Join the First 100</span> <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>';
-                      lucide.createIcons();
-                  });
-              }
-          });
-      }
-  </script>
+        // ---------------------------------
+        // Easter Egg Reveal Interaction
+        // ---------------------------------
+        const eggBtn = document.getElementById('easter-egg-btn');
+        const eggContent = document.getElementById('easter-egg-content');
+        const eggHeart = document.getElementById('egg-heart-icon');
+
+        eggBtn.addEventListener('click', () => {
+            const isActive = eggContent.classList.contains('active');
+            if (isActive) {
+                // Close
+                eggContent.classList.remove('active');
+                eggHeart.classList.remove('fill-brand-amber', 'scale-125');
+                eggBtn.classList.remove('text-brand-green');
+            } else {
+                // Open Reveal
+                eggContent.classList.add('active');
+                eggHeart.classList.add('fill-brand-amber', 'scale-125');
+                eggBtn.classList.add('text-brand-green');
+            }
+        });
+    </script>
 </body>
 </html>
